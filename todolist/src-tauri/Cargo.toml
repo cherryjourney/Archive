@@ -1,0 +1,34 @@
+[package]
+name = "archive-cunji"
+version = "5.4.0"
+description = "Archive · 存迹 — 每一段认真度过的晨昏，皆在此间。"
+authors = ["Archive · 存迹"]
+edition = "2021"
+
+[lib]
+name = "archive_cunji_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.31", features = ["bundled"] }
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+zip = "2"
+sha2 = "0.10"
+regex-lite = "0.1"
+walkdir = "2"
+axum = "0.8"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.6", features = ["cors"] }

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicehorse06/seo/refs/heads/main/tauri-conf.schema.json",
+  "productName": "Archive·CunJi",
+  "version": "5.0.1",
+  "identifier": "com.archive-cunji.desktop",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Archive · 存迹 — 每一段认真度过的晨昏，皆在此间。",
+        "width": 1400,
+        "height": 900,
+        "minWidth": 1000,
+        "minHeight": 680,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "template": "installer.nsi",
+        "installMode": "perMachine",
+        "languages": ["SimpChinese", "English"]
+      }
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  }
+}

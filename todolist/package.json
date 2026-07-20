@@ -1,0 +1,44 @@
+{
+  "name": "archive-cunji",
+  "version": "5.0.1",
+  "description": "Archive · 存迹 — 每一段认真度过的晨昏，皆在此间。",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.6.1",
+    "@tauri-apps/api": "^2.5.0",
+    "@tauri-apps/plugin-dialog": "^2.2.0",
+    "@tauri-apps/plugin-fs": "^2.2.0",
+    "@tauri-apps/plugin-shell": "^2.2.0",
+    "antd": "^5.26.0",
+    "dayjs": "^1.11.13",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.2",
+    "katex": "^0.17.0",
+    "lunar-typescript": "^1.8.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "xlsx": "^0.18.5",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.2",
+    "@types/node": "^25.9.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "sharp": "^0.35.2",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.0"
+  }
+}

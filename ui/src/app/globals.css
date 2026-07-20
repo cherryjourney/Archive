@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens (OKLCH) ─── */
+:root {
+  /* Deep space blues — layered, never flat black */
+  --space-deepest: oklch(0.06 0.015 270);
+  --space-deep:    oklch(0.10 0.018 270);
+  --space-mid:     oklch(0.14 0.022 265);
+  --space-surface: oklch(0.18 0.025 260);
+
+  /* Amber signal — the ONLY accent */
+  --amber:          oklch(0.68 0.13 80);
+  --amber-muted:    oklch(0.55 0.09 80);
+  --amber-glow:    oklch(0.75 0.14 80);
+  --amber-ghost:   oklch(0.68 0.06 80);
+
+  /* Ink hierarchy */
+  --ink-primary:    oklch(0.95 0.005 270);
+  --ink-secondary: oklch(0.72 0.01 270);
+  --ink-tertiary:  oklch(0.50 0.015 270);
+  --ink-faint:     oklch(0.35 0.015 270);
+
+  /* Semantic */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Spacing rhythm */
+  --gap-section: clamp(80px, 12vw, 160px);
+  --gap-block:   clamp(40px, 6vw, 80px);
+  --gap-element: clamp(16px, 2vw, 28px);
+  --container:   min(1200px, 90vw);
+}
+
+/* ─── Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--space-deepest);
+  color: var(--ink-primary);
+  line-height: 1.65;
+  font-family: var(--font-body), 'Noto Sans SC', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Typography scale ─── */
+h1, h2, h3 {
+  text-wrap: balance;
+  line-height: 1.15;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+/* ─── Focus ─── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--amber-muted);
+  color: var(--space-deepest);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--space-deepest);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-faint);
+  border-radius: 3px;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

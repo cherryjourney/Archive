@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Rust build artifacts
+**/target/
+**/target2/
+
+# Next.js build
+**/.next/
+
+# Cache
+.npm-cache/
+.impeccable/
+
+# Claude / Agent configs (not code)
+.agents/
+.claude/
+docs/
+CLAUDE.md
+**/CLAUDE.md
+**/AGENTS.md
+
+# Skills lock
+skills-lock.json
+package-lock.json
+
+# Local tool configs
+**/.superpowers/
+**/.cargo/
+
+# Product / requirements docs
+todolist/PRODUCT.md
+新需求.md
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Database (personal data)
+sql/
+
+# Environment
+.env
+.env.local

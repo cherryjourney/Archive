@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ===== Design System Tokens ===== */
+:root {
+  --bg-base: #06080f;
+  --bg-deep: #0e1629;
+  --bg-elevated: #0e1320;
+  --ink-blue: #1c2440;
+  --accent-blue: #5a82e6;
+  --accent-blue-soft: #9ba9d4;
+  --text-primary: #eef1f8;
+  --text-on-blue: #cdd9ff;
+  --text-secondary: #9aa3bd;
+  --text-muted: #6a78a8;
+  --amber: #c9a85c;
+  --amber-soft: #e8d4a8;
+  --amber-deep: #a8855a;
+  --border-subtle: rgba(120, 150, 230, 0.12);
+  --border-amber: rgba(201, 168, 92, 0.25);
+  --surface-glass: rgba(120, 150, 230, 0.06);
+}
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-ink-blue: var(--ink-blue);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-blue-soft: var(--accent-blue-soft);
+  --color-text-primary: var(--text-primary);
+  --color-text-on-blue: var(--text-on-blue);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-amber-deep: var(--amber-deep);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-amber: var(--border-amber);
+}
+
+/* ===== Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Times New Roman', 'Songti SC', 'Source Han Serif SC', 'SimSun', serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== Typography Scale ===== */
+h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+h3 {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+h4 {
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+::selection {
+  background-color: rgba(201, 168, 92, 0.3);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue-soft);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,583 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   Archive · 存迹 — 学术主题
+   Archive · 存迹 — 每一段认真度过的晨昏，皆在此间。
+   配色: Cobalt Blue #2563EB + Emerald #059669
+   ========================================== */
+
+/* ── Design Tokens ────────────────────── */
+
+:root {
+  /* Brand */
+  --color-primary:       #2563EB;
+  --color-primary-light: #60A5FA;
+  --color-secondary:     #3B82F6;
+  --color-accent:        #059669;
+  --color-accent-light:  #34D399;
+
+  /* Semantic */
+  --color-success:  #10B981;
+  --color-warning:  #F59E0B;
+  --color-error:    #DC2626;
+  --color-info:     #3B82F6;
+
+  /* Light mode surfaces */
+  --bg-root:     radial-gradient(ellipse at 20% 0%, #EFF6FF 0%, #F0F9FF 20%, #F8FAFC 50%, #F1F5F9 80%, #EFF6FF 100%);
+  --bg-card:     rgba(255,255,255,0.72);
+  --bg-card-hover: rgba(255,255,255,0.92);
+  --bg-glass:    rgba(255,255,255,0.54);
+  --bg-glass-strong: rgba(255,255,255,0.78);
+  --bg-sidebar:  #F8FAFC;
+  --bg-muted:    #F1F5F9;
+
+  /* Text */
+  --text-primary:    #0F172A;
+  --text-secondary:  #475569;
+  --text-muted:      #94A3B8;
+  --text-placeholder:#B0B8C8;
+
+  /* Borders */
+  --border-subtle:  rgba(0,0,0,0.04);
+  --border-default: rgba(0,0,0,0.06);
+  --border-strong:  rgba(0,0,0,0.10);
+
+  /* Shadows — softer diffusion */
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.01);
+  --shadow-md:  0 1px 3px rgba(0,0,0,0.03), 0 6px 20px rgba(0,0,0,0.03);
+  --shadow-lg:  0 4px 24px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.03);
+  --shadow-glow: 0 0 20px rgba(37,99,235,0.10);
+  --shadow-glow-lg: 0 0 36px rgba(37,99,235,0.16);
+
+  /* Radius — modern SaaS scale */
+  --radius-sm:  10px;
+  --radius-md:  18px;
+  --radius-lg:  24px;
+  --radius-xl:  28px;
+  --radius-2xl: 32px;
+
+  /* Typography */
+  --font-sans:   'Atkinson Hyperlegible', 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-heading:'Crimson Pro', 'Noto Serif SC', 'Microsoft YaHei', serif;
+  --font-mono:   'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Animation */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   350ms;
+
+  /* Heatmap */
+  --heatmap-empty: #ebedf0;
+  --heatmap-l1: #9be9a8;
+  --heatmap-l2: #40c463;
+  --heatmap-l3: #30a14e;
+  --heatmap-l4: #216e39;
+}
+
+/* ── Dark Mode Tokens ─────────────────── */
+
+.dark {
+  --bg-root:     radial-gradient(ellipse at 20% 0%, #0B1120 0%, #0D1525 30%, #0F172A 60%, #0B1120 100%);
+  --bg-card:     rgba(21,25,40,0.72);
+  --bg-card-hover: rgba(28,34,52,0.88);
+  --bg-glass:    rgba(21,25,40,0.55);
+  --bg-glass-strong: rgba(24,30,45,0.78);
+  --bg-sidebar:  #0F172A;
+  --bg-muted:    #151928;
+
+  --text-primary:    #F1F5F9;
+  --text-secondary:  #94A3B8;
+  --text-muted:      #64748B;
+  --text-placeholder:#505868;
+
+  --border-subtle:  rgba(255,255,255,0.05);
+  --border-default: rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.12);
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.24), 0 1px 3px rgba(0,0,0,0.16);
+  --shadow-md:  0 1px 3px rgba(0,0,0,0.32), 0 6px 20px rgba(0,0,0,0.22);
+  --shadow-lg:  0 4px 24px rgba(0,0,0,0.38), 0 12px 40px rgba(0,0,0,0.26);
+  --shadow-glow: 0 0 24px rgba(59,130,246,0.12);
+  --shadow-glow-lg: 0 0 40px rgba(59,130,246,0.16);
+
+  --heatmap-empty: rgba(255,255,255,0.06);
+  --heatmap-l1: #0e4429;
+  --heatmap-l2: #006d32;
+  --heatmap-l3: #26a641;
+  --heatmap-l4: #39d353;
+}
+
+/* ── Base Reset ───────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Page Background ──────────────────── */
+
+.page-bg {
+  background: var(--bg-root);
+  min-height: 100%;
+}
+
+/* ── Heading Typography ───────────────── */
+/* Crimson Pro is loaded and should be used for headings */
+
+.page-enter h1, .page-enter h2, .page-enter h3, .page-enter h4,
+h1.page-title, h2.page-title, h3.page-title, h4.page-title {
+  font-family: var(--font-heading);
+}
+
+h1, .ant-typography h1 { font-family: var(--font-heading); font-weight: 600; }
+h2, .ant-typography h2 { font-family: var(--font-heading); font-weight: 600; }
+h3, .ant-typography h3 { font-family: var(--font-heading); font-weight: 600; }
+h4, .ant-typography h4 { font-family: var(--font-heading); font-weight: 500; }
+
+/* ── Page Header Utility ──────────────── */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+
+.page-header-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ── Glass Cards ──────────────────────── */
+
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-default);
+  transform: translateY(-2px);
+}
+
+.glass-card-strong {
+  background: var(--bg-glass-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Solid Card ───────────────────────── */
+
+.card-solid {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Paper Card (hover lift) ────────────── */
+
+.paper-card { transition: all 0.25s var(--ease-out); }
+.paper-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-default);
+  transform: translateY(-2px);
+}
+
+/* ── Accent Card Variants ─────────────── */
+
+.card-blue    { background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 1px solid #BFDBFE; }
+.card-emerald { background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); border: 1px solid #A7F3D0; }
+.card-amber   { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); border: 1px solid #FDE68A; }
+.card-rose    { background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%); border: 1px solid #FECDD3; }
+.card-cyan    { background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%); border: 1px solid #A5F3FC; }
+.card-violet  { background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%); border: 1px solid #DDD6FE; }
+
+.dark .card-blue    { background: linear-gradient(135deg, #1E3A5F18 0%, #1E3A5F0C 100%); border-color: #1E40AF30; }
+.dark .card-emerald { background: linear-gradient(135deg, #022C2218 0%, #064E3B0C 100%); border-color: #064E3B30; }
+.dark .card-amber   { background: linear-gradient(135deg, #451A0318 0%, #78350F0C 100%); border-color: #78350F30; }
+.dark .card-rose    { background: linear-gradient(135deg, #4C051910 0%, #4C051908 100%); border-color: #88133730; }
+.dark .card-cyan    { background: linear-gradient(135deg, #042F2E18 0%, #155E750C 100%); border-color: #155E7530; }
+.dark .card-violet  { background: linear-gradient(135deg, #312E8118 0%, #3730A30C 100%); border-color: #4C1D9530; }
+
+/* ── Glow Effects ──────────────────────── */
+
+.glow-blue    { box-shadow: 0 0 20px rgba(37,99,235,0.10); }
+.glow-emerald { box-shadow: 0 0 20px rgba(5,150,105,0.10); }
+.glow-amber   { box-shadow: 0 0 20px rgba(245,158,11,0.10); }
+.glow-rose    { box-shadow: 0 0 20px rgba(220,38,38,0.10); }
+
+.dark .glow-blue    { box-shadow: 0 0 28px rgba(59,130,246,0.12); }
+.dark .glow-emerald { box-shadow: 0 0 28px rgba(16,185,129,0.12); }
+.dark .glow-amber   { box-shadow: 0 0 28px rgba(251,191,36,0.10); }
+
+/* ── Scrollbar ─────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #BFDBFE;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: #93C5FD; }
+
+.dark ::-webkit-scrollbar-thumb       { background: #1E40AF; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+
+/* ── Task Completed ───────────────────── */
+
+.task-completed {
+  text-decoration: line-through;
+  opacity: 0.45;
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+/* ── Page Enter Animation ─────────────── */
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: fadeSlideIn 0.3s var(--ease-out); }
+
+/* ── Float Animation ──────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+.float-anim { animation: float 4s ease-in-out infinite; }
+
+@keyframes emptyFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.empty-float { animation: emptyFloat 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .empty-float { animation: none; }
+}
+
+/* ── Pulse Glow ───────────────────────── */
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(37,99,235,0.08); }
+  50%      { box-shadow: 0 0 24px rgba(37,99,235,0.18); }
+}
+.pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+/* ── Skeleton Loading ─────────────────── */
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-muted) 25%, var(--border-subtle) 50%, var(--bg-muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Bento Grid Card ──────────────────── */
+
+.bento-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all var(--duration-normal) var(--ease-out);
+  cursor: default;
+}
+.bento-card.interactive {
+  cursor: pointer;
+}
+.bento-card.interactive:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-default);
+  transform: translateY(-3px);
+}
+
+/* ── Empty State ──────────────────────── */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Dark Mode Transition ─────────────── */
+
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Micro-interactions ────────────────── */
+
+/* Button press feedback — smooth both ways, no filter to avoid WebView2 flash */
+.ant-btn {
+  transition: transform 0.1s var(--ease-out), box-shadow 0.1s var(--ease-out);
+}
+.ant-btn:active {
+  transform: scale(0.97);
+}
+
+/* Interactive element focus ring */
+.ant-btn:focus-visible,
+.ant-input:focus-visible,
+.ant-select-focused .ant-select-selector,
+a:focus-visible {
+  outline: 2px solid rgba(37,99,235,0.30);
+  outline-offset: 2px;
+}
+
+/* Clickable card press */
+.bento-card.interactive:active {
+  transform: scale(0.985);
+  transition: transform 0.08s var(--ease-out);
+}
+
+/* List item stagger entrance */
+@keyframes listItemEnter {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Smooth selection highlight */
+.ant-table-row {
+  transition: background 0.15s var(--ease-out);
+}
+
+/* Link hover underline */
+a.ant-typography {
+  transition: color 0.15s var(--ease-out);
+}
+
+/* Tag press */
+.ant-tag {
+  transition: transform 0.1s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+.ant-tag:active {
+  transform: scale(0.96);
+}
+
+/* Card entrance animation delay utility */
+.card-enter-1  { animation: fadeSlideIn 0.3s var(--ease-out) 0.00s both; }
+.card-enter-2  { animation: fadeSlideIn 0.3s var(--ease-out) 0.05s both; }
+.card-enter-3  { animation: fadeSlideIn 0.3s var(--ease-out) 0.10s both; }
+.card-enter-4  { animation: fadeSlideIn 0.3s var(--ease-out) 0.15s both; }
+.card-enter-5  { animation: fadeSlideIn 0.3s var(--ease-out) 0.20s both; }
+.card-enter-6  { animation: fadeSlideIn 0.3s var(--ease-out) 0.25s both; }
+
+/* ── List Stagger Entrance (useStaggeredList hook) ── */
+.stagger-enter { animation: fadeSlideIn 0.3s var(--ease-out) both; }
+.stagger-delay-0  { animation-delay: 0.00s; }
+.stagger-delay-1  { animation-delay: 0.03s; }
+.stagger-delay-2  { animation-delay: 0.06s; }
+.stagger-delay-3  { animation-delay: 0.09s; }
+.stagger-delay-4  { animation-delay: 0.12s; }
+.stagger-delay-5  { animation-delay: 0.15s; }
+.stagger-delay-6  { animation-delay: 0.18s; }
+.stagger-delay-7  { animation-delay: 0.21s; }
+.stagger-delay-8  { animation-delay: 0.24s; }
+.stagger-delay-9  { animation-delay: 0.27s; }
+.stagger-delay-10 { animation-delay: 0.30s; }
+.stagger-delay-11 { animation-delay: 0.33s; }
+.stagger-delay-12 { animation-delay: 0.36s; }
+.stagger-delay-13 { animation-delay: 0.39s; }
+.stagger-delay-14 { animation-delay: 0.42s; }
+.stagger-delay-15 { animation-delay: 0.45s; }
+.stagger-delay-16 { animation-delay: 0.48s; }
+.stagger-delay-17 { animation-delay: 0.51s; }
+.stagger-delay-18 { animation-delay: 0.54s; }
+.stagger-delay-19 { animation-delay: 0.57s; }
+.stagger-delay-20 { animation-delay: 0.60s; }
+
+/* ── Utility ──────────────────────────── */
+
+.truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.no-drag { -webkit-app-region: no-drag; }
+.drag    { -webkit-app-region: drag; }
+
+/* ── Dashboard Helpers ────────────────── */
+
+.countdown-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+}
+.countdown-row:hover {
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+}
+
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.18s var(--ease-out);
+}
+.quick-action-btn:hover {
+  background: var(--color-fill);
+  border-color: rgba(37,99,235,0.15);
+  transform: translateX(4px);
+}
+
+/* ── Plan Page: Unscheduled Items ──────── */
+
+.unscheduled-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid transparent;
+  transition: all 0.15s var(--ease-out);
+}
+.unscheduled-item:hover {
+  border-left-color: #2563EB;
+  background: var(--color-fill);
+}
+
+/* ==========================================
+   V5.0 Animation Enhancements
+   ========================================== */
+
+/* ── #1 prefers-reduced-motion ──────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── #2 Modal enter/leave ──────────────── */
+/* Ant Design 5 already handles modal transitions internally via CSS transition.
+   Overriding with @keyframes causes double-animation (flash/jitter).
+   Use transition-based approach that composes with Ant Design's system. */
+.ant-modal .ant-modal-content {
+  transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out);
+}
+
+/* ── #3 Skeleton card ──────────────────── */
+
+.skeleton-card {
+  background: linear-gradient(90deg, var(--bg-muted) 25%, var(--border-subtle) 50%, var(--bg-muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--radius-lg);
+  min-height: 200px;
+}
+
+/* ── #5 Tab crossfade ──────────────────────── */
+/* Ant Design 5 Tabs already have built-in ink-bar and content transitions.
+   Adding extra CSS transitions can cause double-animation. */
+
+/* ── #8 Button active ────────────────────── */
+/* (merged into Micro-interactions section above — no filter to avoid WebView2 flicker) */
+
+/* ── #6 Sidebar hover ripple ───────────── */
+
+.ant-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+.ant-menu-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+    rgba(37,99,235,0.12) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.ant-menu-item:hover::after {
+  opacity: 1;
+}
+
+/* ── #9 Toast slide-in ─────────────────── */
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ant-message-notice {
+  animation: toastSlideIn 0.25s var(--ease-out);
+}
+
+/* ── #12 Dark mode crossfade ──────────────── */
+/* Only transition body (already declared above in Dark Mode Transition section).
+   html-level transitions can cause flashes on Modal open/close across the entire viewport. */
+
+/* ── #4 Page slide transition ──────────── */
+
+.page-slide-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.page-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.25s var(--ease-out);
+}
+.page-slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.page-slide-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.15s ease-in;
+}

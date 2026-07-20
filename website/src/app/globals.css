@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark: #000000;
+  --bg-light: #F5F5F7;
+  --bg-white: #FFFFFF;
+  --text-on-dark: #F5F5F7;
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --accent: #0071E3;
+  --accent-hover: #0077ED;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body), var(--font-body-cn), ui-sans-serif, system-ui, sans-serif;
+  color: var(--text-primary);
+}
+
+/* Section utilities */
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+  padding: 120px 24px;
+}
+
+.section-light {
+  background: var(--bg-light);
+  color: var(--text-primary);
+  padding: 120px 24px;
+}
+
+.section-white {
+  background: var(--bg-white);
+  color: var(--text-primary);
+  padding: 120px 24px;
+}
+
+/* Dot-grid for dark backgrounds */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .orb {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 640px) {
+  .scenario-grid { grid-template-columns: 1fr !important; }
+  .platform-grid { grid-template-columns: 1fr !important; }
+  .features-module-grid { grid-template-columns: 1fr !important; }
+}
